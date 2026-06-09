@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="MARVというマイクラの国家運営サーバーの国家「済州王国」の公式サイトです。フィリピン、アラスカの領土を有する、平和主義の国家です。">
+    <link rel="icon" href="https://i.imgur.com/HTfxQXp.png">
+    <title>済州王国 | MRAV</title>
+    <style>
+        /* ==========================================
+           CSS Variables & Base Reset
+           ========================================== */
+        :root {
+            --color-bg-main: #202020;      /* メイン背景：純黒 */
+            --color-bg-sub: #393939;       /* サブ背景・カード等：ダークグレー */
+            --color-bg-box: #313131;       /* 内包ボックス：ミディアムグレー */
+            --color-text-main: #ffffff;    /* メイン文字：純白 */
+            --color-text-muted: #d4d4d8;   /* サブ文字：明るいグレー */
+            --color-text-light: #71717a;   /* 補足文字：ディープグレー */
+            --color-border: #848484;       /* 境界線：グレー */
+            --color-border-light: #52525b; /* 強調境界線 */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            border-radius: 0 !important; /* すべての角丸を完全に無効化 */
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--color-bg-main);
+            color: var(--color-text-main);
+            line-height: 1.8;
+            letter-spacing: 0.06em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Common Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ==========================================
+           Header
+           ========================================== */
+        header {
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            background-color: rgba(12, 12, 12, 0.85);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            color: var(--color-text-main);
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            font-weight: 300;
+            color: var(--color-text-muted);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--color-text-main);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            position: relative;
+            padding: 4px 0;
+            transition: var(--transition-smooth);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-text-main);
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ==========================================
+           Hero Section
+           ========================================== */
+        .hero {
+            padding: 120px 0 80px 0;
+            text-align: center;
+        }
+
+        .hero-tag {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--color-bg-main);
+            background: var(--color-text-main);
+            padding: 4px 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 24px;
+            letter-spacing: 0.08em;
+        }
+
+        .hero p {
+            font-size: 15px;
+            color: var(--color-text-muted);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            margin-bottom: 48px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--color-border-light);
+        }
+
+        /* View Switching System */
+        .view-section {
+            display: block;
+        }
+        .article-detail-section {
+            display: none;
+            padding: 60px 0 120px 0;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ==========================================
+           Articles Grid & Cards
+           ========================================== */
+        .articles {
+            padding: 60px 0 100px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .card {
+            background: var(--color-bg-sub);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--color-border);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            height: 100%;
+        }
+
+        .card:hover {
+            border-color: var(--color-border-light);
+            background-color: var(--color-bg-box);
+        }
+
+        .card-image-box {
+            width: 100%;
+            height: 220px;
+            background-color: #ffffff; /* 画像自体の色や背景を活かすため白地に固定 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            border-bottom: 1px solid var(--color-border);
+            flex-shrink: 0;
+        }
+
+        .card-image-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: var(--transition-smooth); /* カラーはそのまま保持 */
+        }
+
+        .card:hover .card-image-box img {
+            transform: scale(1.03);
+        }
+
+        .card-body {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: 17px;
+            font-weight: 800;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* Statement Card Inline Custom */
+        .card .statement-sub-title {
+            font-weight: 700;
+            margin-top: 14px;
+            font-size: 13px;
+        }
+        .card .statement-list {
+            list-style: none;
+            margin-top: 6px;
+        }
+        .card .statement-list li {
+            position: relative;
+            padding-left: 14px;
+            font-size: 12px;
+            color: var(--color-text-muted);
+            margin-bottom: 4px;
+        }
+        .card .statement-list li::before {
+            content: "■";
+            font-size: 8px;
+            position: absolute;
+            left: 0;
+            top: 1px;
+            color: var(--color-text-main);
+        }
+
+        /* ==========================================
+           Article Detail View Custom
+           ========================================== */
+        .article-container {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-header .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: 1px solid var(--color-border-light);
+            padding: 10px 24px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-text-main);
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            transition: var(--transition-smooth);
+            margin-bottom: 32px;
+        }
+
+        .article-header .back-btn:hover {
+            background: var(--color-text-main);
+            color: var(--color-bg-main);
+        }
+
+        .article-main-img {
+            width: 100%;
+            height: auto;
+            max-height: 440px;
+            background: #ffffff; /* 画像を綺麗に見せるための白背景 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 40px;
+        }
+
+        .article-main-img img {
+            max-width: 100%;
+            max-height: 340px;
+            object-fit: contain;
+        }
+
+        .article-title {
+            font-size: 30px;
+            font-weight: 900;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+
+        .article-date {
+            color: var(--color-text-light);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .article-content-body {
+            font-size: 15px;
+            color: var(--color-text-muted);
+            line-height: 1.9;
+        }
+
+        .article-content-body p {
+            margin-bottom: 24px;
+        }
+
+        /* Peace Document Style (Article 3 Specific) */
+        .document-box {
+            background: var(--color-bg-sub);
+            padding: 48px;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .document-title {
+            font-size: 19px;
+            font-weight: 900;
+            border-bottom: 1px solid var(--color-border-light);
+            padding-bottom: 12px;
+            margin-bottom: 32px;
+            letter-spacing: 0.05em;
+            color: var(--color-text-main);
+        }
+
+        .document-section-title {
+            font-weight: 900;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-main);
+        }
+
+        .statement-list-large {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .statement-list-large li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 13px;
+            margin-bottom: 10px;
+            color: var(--color-text-muted);
+        }
+
+        .statement-list-large li::before {
+            content: "■";
+            font-size: 9px;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--color-text-main);
+        }
+
+        /* ==========================================
+           About Section & Table
+           ========================================== */
+        .about-section {
+            background-color: var(--color-bg-sub);
+            padding: 100px 0;
+        }
+
+        .table-wrapper {
+            background: var(--color-bg-main);
+            border: 1px solid var(--color-border);
+            padding: 16px 32px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 24px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: middle;
+        }
+
+        th {
+            font-weight: 800;
+            width: 25%;
+            color: var(--color-text-main);
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            color: var(--color-text-muted);
+        }
+
+        tr:last-child th, tr:last-child td {
+            border-bottom: none;
+        }
+
+        .about-flag {
+            border: 1px solid var(--color-border);
+            padding: 6px;
+            background: #ffffff; /* 国旗の白枠 */
+            display: inline-block;
+        }
+
+        /* ==========================================
+           Footer
+           ========================================== */
+        footer {
+            background-color: var(--color-bg-main);
+            color: var(--color-text-main);
+            padding: 80px 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+
+        .footer-sub {
+            font-size: 12px;
+            color: var(--color-text-light);
+            margin-bottom: 40px;
+            letter-spacing: 0.05em;
+        }
+
+        .copyright {
+            font-size: 11px;
+            color: var(--color-text-light);
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================
+           Responsive Media Queries
+           ========================================== */
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            nav {
+                display: none;
+            }
+            .hero {
+                padding: 80px 0 40px 0;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .article-title {
+                font-size: 22px;
+            }
+            .document-box {
+                padding: 24px;
+            }
+            th, td {
+                display: block;
+                width: 100%;
+                padding: 12px 8px;
+            }
+            th {
+                border-bottom: none;
+                padding-top: 20px;
+            }
+            td {
+                padding-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo" onclick="navigateToSection(event, 'top')">JEJU <span>KINGDOM</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#articles" onclick="navigateToSection(event, 'articles')">NEWS</a></li>
+                    <li><a href="#about" onclick="navigateToSection(event, 'about')">ABOUT</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- メインビューコンテナ -->
+    <div id="main-view-section" class="view-section">
+        <!-- Hero Section -->
+        <section class="hero container">
+            <span class="hero-tag">Microstate</span>
+            <h1>済州王国</h1>
+            <p>フィリピン、アラスカの領土を有する、平和主義の国家</p>
+        </section>
+
+        <!-- Articles Section -->
+        <section id="articles" class="articles container">
+            <h2 class="section-title">Latest News</h2>
+            <div class="grid">
+                <!-- Card 1 -->
+                <div class="card" onclick="openArticle('article-1')">
+                    <div class="card-image-box">
+                        <img src="https://i.imgur.com/rJd5lf1.png" alt="済州王国国旗">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag">Territory</div>
+                        <h3>アラスカ南部の一部地域において占領・統治を完了</h3>
+                        <p>2024年6月8日、済州王国はアラスカ南部の一部の占領を完了したことを発表しました。これにより王国は、フィリピンに続く広大な地域に拠点を有する国家となりました。</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="card" onclick="openArticle('article-2')">
+                    <div class="card-image-box">
+                        <img src="https://i.imgur.com/HTfxQXp.png" alt="済州王国国旗">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag">Identity</div>
+                        <h3>王国の歴史と未来を融合した、新国旗デザインへと刷新</h3>
+                        <p>済州王国のシンボルである国旗が新たなデザインへと生まれ変わりました。伝統的なアイデンティティを保ちつつ、現代に調和する洗練された意匠が採用されています。</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="card" onclick="openArticle('article-3')">
+                    <div class="card-image-box">
+                        <img src="https://i.imgur.com/HTfxQXp.png" alt="済州王国国旗">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag">Philosophy</div>
+                        <h3>【公式声明】世界の国々との調和を目指す「平和主義声明」</h3>
+                        <p style="margin-bottom: 12px;"><strong>第1条 声明の主旨</strong><br>本声明は、国民および国家首相の「戦争を望まない」という強い意志に基づき策定されました。</p>
+                        
+                        <p class="statement-sub-title">第2条 王国の禁止事項</p>
+                        <ul class="statement-list">
+                            <li>世界各国への誹謗中傷行為</li>
+                            <li>世界各国における戦争への参加・加担</li>
+                            <li>一切の軍事系同盟への不参加</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">About Jeju Kingdom</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>国名</th>
+                                <td>済州王国（Jeju Kingdom）</td>
+                            </tr>
+                            <tr>
+                                <th>国旗</th>
+                                <td>
+                                    <div class="about-flag">
+                                        <img src="https://i.imgur.com/HTfxQXp.png" alt="済州王国国旗" width="120" style="display: block;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>主要特産品</th>
+                                <td>非公開</td>
+                            </tr>
+                            <tr>
+                                <th>統治地域（町）</th>
+                                <td>
+                                    1. 済州（中央）<br>
+                                    2. フィリピン地域<br>
+                                    3. アラスカ地域
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- 記事詳細 1 -->
+    <div id="article-1" class="article-detail-section container">
+        <div class="article-container">
+            <div class="article-header">
+                <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
+                <div class="card-tag">Territory</div>
+                <h1 class="article-title">アラスカ南部の一部地域において占領・統治を完了</h1>
+                <p class="article-date">発表日: 2026年6月8日</p>
+            </div>
+            <div class="article-main-img">
+                <img src="https://i.imgur.com/rJd5lf1.png" alt="済州王国国旗">
+            </div>
+            <div class="article-content-body">
+                <p>2026年6月8日、済州王国政府はアラスカ南部における一部地域の占領および安定的な統治体制の確立が完了したことを公式に発表しました。</p>
+                <p>本計画は長期にわたり慎重に進められてきたものであり、今回の統治完了に伴い、済州王国はフィリピン地域、アラスカ地域の双方に領土・拠点を有する、国際的にも大変ユニークなミクロネーション（架空国家）としての地位をさらに強固なものとしました。</p>
+                <p>国王は世界中の平和と繁栄を願っています。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 記事詳細 2 -->
+    <div id="article-2" class="article-detail-section container">
+        <div class="article-container">
+            <div class="article-header">
+                <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
+                <div class="card-tag">Identity</div>
+                <h1 class="article-title">王国の歴史と未来を融合した、新国旗デザインへと刷新</h1>
+                <p class="article-date">発表日: 2026年6月8日</p>
+            </div>
+            <div class="article-main-img">
+                <img src="https://i.imgur.com/HTfxQXp.png" alt="済州王国国旗">
+            </div>
+            <div class="article-content-body">
+                <p>済州王国の国家のシンボルである「国旗」が、公式に新たなデザインへと刷新されました。</p>
+                <p>新しい国旗は、現実での済州島の町旗をそのまま国旗に使っています。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 記事詳細 3 -->
+    <div id="article-3" class="article-detail-section container">
+        <div class="article-container">
+            <div class="article-header">
+                <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
+                <div class="card-tag">Philosophy</div>
+                <h1 class="article-title">【公式声明】世界の国々との調和を目指す「平和主義声明」</h1>
+                <p class="article-date">発表日: 2026年6月8日</p>
+            </div>
+            <div class="article-main-img">
+                <img src="https://i.imgur.com/HTfxQXp.png" alt="済州王国国旗">
+            </div>
+            <div class="article-content-body document-box">
+                <p class="document-title">済州王国 平和主義声明全文</p>
+                
+                <p><strong>第1条 声明の主旨</strong><br>この声明は国民や国家首相が戦争をしたくない
+ということで作りました。
+</p>
+                
+                <p class="document-section-title">第2条 済州王国の禁止事項</p>
+                <ul class="statement-list-large">
+                    <li>世界各国やその人々への誹謗中傷、不名誉な攻撃を行うこと。</li>
+                    <li>世界各国で発生するあらゆる戦争・紛争への参加、および武力による加担。</li>
+                    <li>国際社会において、いかなる戦争行為もこれを行わないこと。</li>
+                    <li>他国との軍事系同盟や、それに類する防衛・攻撃を前提とした協定への参加。</li>
+                </ul>
+
+                <p class="document-section-title">＜世界の国々への明確な禁止事項＞</p>
+                <ul class="statement-list-large">
+                    <li>非武装および平和を愛する「済州王国」を攻め、侵略すること。</li>
+                    <li>済州王国に対する一方的な誹謗中傷、名誉毀損、および暴言。</li>
+                </ul>
+
+                <p class="document-section-title">第3条 済州王国が許される権利・範囲</p>
+                <ul class="statement-list-large">
+                    <li>自衛の目的における、必要最低限の兵器・防衛用機材の製造。</li>
+                    <li>外部からの侵入を防ぐための壁、および自衛のための堅牢な防衛線の設置。</li>
+                    <li>国家の安全を確保するための、傀儡地域や緩衝地帯（バッファゾーン）の設定。</li>
+                    <li>経済や文化など、軍事系同盟「以外」の平和的な同盟への積極的な参加。</li>
+                    <li>万が一、他国より不当に攻められた場合、徹底的な防衛のために軍を率いて自国の安全と国民を守るために戦うこと。</li>
+                </ul>
+
+                <p class="document-section-title">第4条 最後に</p>
+                <p style="font-size: 14px; margin-bottom: 0;">うちの国は戦争をしたくないです。
+でも世界の国とは仲良くしたいと思ってます！
+仲良くしてくれる方ぜひ仲良くしたいです！
+</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-logo" onclick="navigateToSection(event, 'top')">JEJU KINGDOM</div>
+            <div class="footer-sub">Inspired by Media-Culture & Modern Microstate Lifestyle.</div>
+            <div class="copyright">&copy; Jeju Kingdom. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function openArticle(articleId) {
+            document.getElementById('main-view-section').style.display = 'none';
+            var details = document.getElementsByClassName('article-detail-section');
+            for (var i = 0; i < details.length; i++) {
+                details[i].style.display = 'none';
+            }
+            document.getElementById(articleId).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showListView() {
+            var details = document.getElementsByClassName('article-detail-section');
+            for (var i = 0; i < details.length; i++) {
+                details[i].style.display = 'none';
+            }
+            document.getElementById('main-view-section').style.display = 'block';
+        }
+
+        function navigateToSection(event, targetId) {
+            event.preventDefault();
+            showListView();
+
+            if (targetId === 'top') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                var targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    var headerOffset = 80;
+                    var elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    var offsetPosition = elementPosition - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
