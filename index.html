@@ -417,6 +417,36 @@
             color: var(--color-text-main);
         }
 
+        /* 記事エリアの初期状態（3つ分だけ表示するような高さ制限） */
+.articles .grid {
+    transition: max-height 0.5s ease;
+    overflow: hidden;
+    max-height: 400px; /* 3枚のカードが表示できる程度の高さ */
+}
+
+/* 全表示時のスタイル */
+.articles .grid.is-expanded {
+    max-height: 2000px; /* 十分な高さを確保 */
+}
+
+/* ボタンのデザイン */
+.more-btn {
+    display: block;
+    margin: 40px auto 0;
+    padding: 12px 32px;
+    background: transparent;
+    color: var(--color-text-main);
+    border: 1px solid var(--color-border);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    transition: var(--transition-smooth);
+}
+.more-btn:hover {
+    background: var(--color-text-main);
+    color: var(--color-bg-main);
+}
+
         /* ==========================================
            About Section & Table
            ========================================== */
@@ -576,50 +606,18 @@
         </section>
 
         <!-- Articles Section -->
+<!-- Articles Section -->
         <section id="articles" class="articles container">
             <h2 class="section-title">Latest News</h2>
-            <div class="grid">
-                <!-- Card 1 -->
-                <div class="card" onclick="openArticle('article-1')">
-                    <div class="card-image-box">
-                        <img src="https://i.imgur.com/rJd5lf1.png" alt="済州王国国旗">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-tag">Territory</div>
-                        <h3>アラスカ南部の一部地域において占領・統治を完了</h3>
-                        <p>2024年6月8日、済州王国はアラスカ南部の一部の占領を完了したことを発表しました。これにより王国は、フィリピンに続く広大な地域に拠点を有する国家となりました。</p>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="card" onclick="openArticle('article-2')">
-                    <div class="card-image-box">
-                        <img src="https://i.imgur.com/HTfxQXp.png" alt="済州王国国旗">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-tag">Identity</div>
-                        <h3>王国の歴史と未来を融合した、新国旗デザインへと刷新</h3>
-                        <p>済州王国のシンボルである国旗が新たなデザインへと生まれ変わりました。伝統的なアイデンティティを保ちつつ、現代に調和する洗練された意匠が採用されています。</p>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="card" onclick="openArticle('article-3')">
-                    <div class="card-image-box">
-                        <img src="https://i.imgur.com/HTfxQXp.png" alt="済州王国国旗">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-tag">Philosophy</div>
-                        <h3>【公式声明】世界の国々との調和を目指す「平和主義声明」</h3>
-                        <p style="margin-bottom: 12px;"><strong>第1条 声明の主旨</strong><br>本声明は、国民および国家首相の「戦争を望まない」という強い意志に基づき策定されました。</p>
-                        
-                        <p class="statement-sub-title">第2条 王国の禁止事項</p>
-                        <ul class="statement-list">
-                            <li>世界各国への誹謗中傷行為</li>
-                            <li>世界各国における戦争への参加・加担</li>
-                            <li>一切の軍事系同盟への不参加</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="grid" id="news-grid">
+                <!-- ここに記事カードを配置 -->
+                <div class="card" onclick="openArticle('article-1')">...</div>
+                <div class="card" onclick="openArticle('article-2')">...</div>
+                <div class="card" onclick="openArticle('article-3')">...</div>
+                <!-- 4つ目以降があればここに追加 -->
+                <div class="card" onclick="openArticle('article-4')">...</div>
             </div>
+            <button class="more-btn" id="more-btn" onclick="toggleNews()">もっと見る</button>
         </section>
 
         <!-- About Section -->
@@ -801,6 +799,18 @@
                 }
             }
         }
+        function toggleNews() {
+    var grid = document.getElementById('news-grid');
+    var btn = document.getElementById('more-btn');
+    
+    grid.classList.toggle('is-expanded');
+    
+    if (grid.classList.contains('is-expanded')) {
+        btn.innerText = '閉じる';
+    } else {
+        btn.innerText = 'もっと見る';
+    }
+}
     </script>
 </body>
 </html>
