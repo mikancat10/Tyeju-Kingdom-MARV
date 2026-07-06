@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>満州国 公式ポータルサイト</title>
+    <title>満州国ポータルサイト</title>
     <style>
         /* --- 基本スタイル & ダークテーマ設定 --- */
         * {
@@ -23,23 +23,67 @@
             padding: 40px 20px;
         }
         
-        /* --- ヘッダー --- */
+        /* --- 共通ヘッダー --- */
         header {
             background-color: #1a1a1a;
             border-bottom: 1px solid #2d2d2d;
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
         }
         .header-title {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
             color: #ffffff;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
         .header-sub {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #888888;
+        }
+
+        /* --- セクションタイトル --- */
+        .section-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            border-left: 4px solid #ffffff;
+            padding-left: 12px;
+            margin-bottom: 24px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* --- ABOUT セクション --- */
+        .about-section {
+            background-color: #1e1e1e;
+            border: 1px solid #2d2d2d;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .about-item {
+            background-color: #161616;
+            border: 1px solid #2d2d2d;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        .about-label {
+            font-size: 0.85rem;
+            color: #888888;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+        .about-value {
+            font-size: 1.2rem;
+            color: #ffffff;
+            font-weight: bold;
         }
 
         /* --- ビュー切り替え制御 --- */
@@ -55,7 +99,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 24px;
-            margin-top: 30px;
         }
         .news-card {
             background-color: #1e1e1e;
@@ -93,7 +136,7 @@
             border: 1px solid #3d3d3d;
         }
         .card-title {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: #ffffff;
             margin-bottom: 8px;
             font-weight: 600;
@@ -101,6 +144,7 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            height: 2.4em; /* 高さの統一 */
         }
         .card-date {
             font-size: 0.8rem;
@@ -129,7 +173,7 @@
             padding: 0;
             margin-bottom: 20px;
             transition: color 0.2s ease;
-            display: flex;
+            display: inline-flex;
             align-items: center;
         }
         .back-btn:hover {
@@ -219,54 +263,79 @@
     <!-- 共通ヘッダー -->
     <header>
         <div class="header-title">満州国 ポータルサイト</div>
-        <div class="header-sub">中華連邦構成国 - 公式ニュースアーカイブ</div>
+        <div class="header-sub">中華連邦構成国 - 公式ポータルページ</div>
     </header>
 
-    <!-- ニュース一覧ビュー -->
+    <!-- メインコンテンツ（一覧ビュー） -->
     <div id="list-view" class="view-section container">
-        <div class="news-grid">
-            
-            <!-- カード 0.9 -->
-            <div class="news-card" onclick="showArticle('article-0.9')">
-                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
-                <div class="card-body">
-                    <div class="card-tag">Territory</div>
-                    <div class="card-title">領土拡張③：本土とリャオトン半島、国境線の接続完了</div>
-                    <div class="card-date">2026年7月6日</div>
+        
+        <!-- ABOUT セクション（既存のパーツを完全保持） -->
+        <section class="about-section">
+            <h2 class="section-title">ABOUT</h2>
+            <p>満州国はハルビンを首都とし、中華連邦のためにできる限り尽くすことを目標とする中華連邦構成国最大（予定）の国家です。</p>
+            <div class="about-grid">
+                <div class="about-item">
+                    <div class="about-label">国家名</div>
+                    <div class="about-value">満州国</div>
+                </div>
+                <div class="about-item">
+                    <div class="about-label">首都</div>
+                    <div class="about-value">ハルビン</div>
+                </div>
+                <div class="about-item">
+                    <div class="about-label">所属</div>
+                    <div class="about-value">中華連邦</div>
                 </div>
             </div>
+        </section>
 
-            <!-- カード 1 -->
-            <div class="news-card" onclick="showArticle('article-1')">
-                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
-                <div class="card-body">
-                    <div class="card-tag">Territory</div>
-                    <div class="card-title">領土拡張②：リャオトン半島から中国・北朝鮮国境の領土取得</div>
-                    <div class="card-date">2026年7月5日</div>
+        <!-- ニュースセクション -->
+        <section>
+            <h2 class="section-title">NEWS & ARCHIVES</h2>
+            <div class="news-grid">
+                
+                <!-- カード 0.9 -->
+                <div class="news-card" onclick="showArticle('article-0.9')">
+                    <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
+                    <div class="card-body">
+                        <div class="card-tag">Territory</div>
+                        <div class="card-title">領土拡張③：本土とリャオトン半島、国境線の接続完了</div>
+                        <div class="card-date">2026年7月6日</div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- カード 2 -->
-            <div class="news-card" onclick="showArticle('article-2')">
-                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
-                <div class="card-body">
-                    <div class="card-tag">Identity</div>
-                    <div class="card-title">領土拡張①：リャオトン半島の領土取得と統治開始</div>
-                    <div class="card-date">2026年7月4日</div>
+                <!-- カード 1 -->
+                <div class="news-card" onclick="showArticle('article-1')">
+                    <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
+                    <div class="card-body">
+                        <div class="card-tag">Territory</div>
+                        <div class="card-title">領土拡張②：リャオトン半島から中国・北朝鮮国境の領土取得</div>
+                        <div class="card-date">2026年7月5日</div>
+                    </div>
                 </div>
-            </div>
 
-            <!-- カード 3 -->
-            <div class="news-card" onclick="showArticle('article-3')">
-                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
-                <div class="card-body">
-                    <div class="card-tag">Founding of the country</div>
-                    <div class="card-title">満州国建国！中華連邦の構成国として発足</div>
-                    <div class="card-date">2026年7月3日</div>
+                <!-- カード 2 -->
+                <div class="news-card" onclick="showArticle('article-2')">
+                    <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
+                    <div class="card-body">
+                        <div class="card-tag">Identity</div>
+                        <div class="card-title">領土拡張①：リャオトン半島の領土取得と統治開始</div>
+                        <div class="card-date">2026年7月4日</div>
+                    </div>
                 </div>
-            </div>
 
-        </div>
+                <!-- カード 3 -->
+                <div class="news-card" onclick="showArticle('article-3')">
+                    <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
+                    <div class="card-body">
+                        <div class="card-tag">Founding of the country</div>
+                        <div class="card-title">満州国建国！中華連邦の構成国として発足</div>
+                        <div class="card-date">2026年7月3日</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </div>
 
     <!-- 各記事詳細ビュー -->
@@ -364,7 +433,7 @@
                 
                 <p class="document-section-title">第3条 満州国が許される権利・範囲</p>
                 <ul class="statement-list-large">
-                    <li>自衛の目的における、必要最低限の兵器・防衛用機材の製造.</li>
+                    <li>自衛の目的における、必要最低限の兵器・防衛用機材の製造。</li>
                     <li>外部からの侵入を防ぐための壁、および自衛のための堅牢な防衛線の設置。</li>
                     <li>国家の安全を確保するための、傀儡地域や緩衝地帯（バッファゾーン）の設定。</li>
                     <li>経済や文化など、軍事系同盟「以外」の平和的な同盟への積極的な参加。</li>
@@ -382,32 +451,18 @@
 
     <!-- 表示切り替え用JavaScript -->
     <script>
-        // 指定した記事詳細を開く関数
         function showArticle(articleId) {
-            // 一覧を非表示にする
             document.getElementById('list-view').style.display = 'none';
-            
-            // すべての詳細セクションを一旦非表示にする
             const details = document.querySelectorAll('.article-detail-section');
             details.forEach(detail => detail.style.display = 'none');
-            
-            // 対象の記事だけを表示する
             document.getElementById(articleId).style.display = 'block';
-            
-            // 画面最上部へスクロール
             window.scrollTo(0, 0);
         }
 
-        // ニュース一覧に戻る関数
         function showListView() {
-            // すべての詳細セクションを非表示にする
             const details = document.querySelectorAll('.article-detail-section');
             details.forEach(detail => detail.style.display = 'none');
-            
-            // 一覧を表示する
             document.getElementById('list-view').style.display = 'block';
-            
-            // 画面最上部へスクロール
             window.scrollTo(0, 0);
         }
     </script>
