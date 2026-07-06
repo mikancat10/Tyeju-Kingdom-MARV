@@ -3,709 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="MARVというマイクラの国家運営サーバーの国家「満州国」の公式サイトです。フィリピン、アラスカの領土を有する、平和主義の国家です。">
-    <link rel="icon" href="https://i.imgur.com/a08J13l.png">
-    <title>中華連邦構成国 満州国 | MARV</title>
+    <title>満州国 公式ポータルサイト</title>
     <style>
-        /* ==========================================
-            CSS Variables & Base Reset
-            ========================================== */
-        :root {
-            --color-bg-main: #202020;     /* メイン背景：純黒 */
-            --color-bg-sub: #393939;       /* サブ背景・カード等：ダークグレー */
-            --color-bg-box: #313131;       /* 内包ボックス：ミディアムグレー */
-            --color-text-main: #ffffff;    /* メイン文字：純白 */
-            --color-text-muted: #d4d4d8;   /* サブ文字：明るいグレー */
-            --color-text-light: #71717a;   /* 補足文字：ディープグレー */
-            --color-border: #848484;       /* 境界線：グレー */
-            --color-border-light: #52525b; /* 強調境界線 */
-            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
+        /* --- 基本スタイル & ダークテーマ設定 --- */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            border-radius: 0 !important; /* すべての角丸を完全に無効化 */
         }
-
         body {
-            font-family: var(--font-family);
-            background-color: var(--color-bg-main);
-            color: var(--color-text-main);
-            line-height: 1.8;
-            letter-spacing: 0.06em;
-            -webkit-font-smoothing: antialiased;
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
         }
-
-        /* Common Layout */
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 32px;
+            padding: 40px 20px;
         }
-
-        /* ==========================================
-            Header
-            ========================================== */
+        
+        /* --- ヘッダー --- */
         header {
-            border-bottom: 1px solid var(--color-border);
-            position: sticky;
-            top: 0;
-            background-color: rgba(12, 12, 12, 0.85);
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            transition: var(--transition-smooth);
-        }
-
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 80px;
-        }
-
-        .logo {
-            font-size: 19px;
-            font-weight: 900;
-            letter-spacing: 0.2em;
-            cursor: pointer;
-            color: var(--color-text-main);
-            text-transform: uppercase;
-        }
-
-        .logo span {
-            font-weight: 300;
-            color: var(--color-text-muted);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 40px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--color-text-main);
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            position: relative;
-            padding: 4px 0;
-            transition: var(--transition-smooth);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--color-text-main);
-            transition: var(--transition-smooth);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* ==========================================
-            Hero Section
-            ========================================== */
-        .hero {
-            padding: 120px 0 80px 0;
+            background-color: #1a1a1a;
+            border-bottom: 1px solid #2d2d2d;
+            padding: 30px 20px;
             text-align: center;
         }
-
-        .hero-tag {
-            font-size: 10px;
+        .header-title {
+            font-size: 2rem;
             font-weight: 700;
-            color: var(--color-bg-main);
-            background: var(--color-text-main);
-            padding: 4px 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            margin-bottom: 24px;
-            display: inline-block;
+            letter-spacing: 2px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+        .header-sub {
+            font-size: 0.9rem;
+            color: #888888;
         }
 
-        .hero h1 {
-            font-size: 44px;
-            font-weight: 900;
-            line-height: 1.25;
-            margin-bottom: 24px;
-            letter-spacing: 0.08em;
-        }
-
-        .hero p {
-            font-size: 15px;
-            color: var(--color-text-muted);
-            max-width: 640px;
-            margin: 0 auto;
-        }
-
-        /* Section Title */
-        .section-title {
-            font-size: 22px;
-            font-weight: 900;
-            letter-spacing: 0.15em;
-            margin-bottom: 48px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .section-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background-color: var(--color-border-light);
-        }
-
-        /* View Switching System */
+        /* --- ビュー切り替え制御 --- */
         .view-section {
             display: block;
         }
         .article-detail-section {
             display: none;
-            padding: 60px 0 120px 0;
-            animation: fadeIn 0.4s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* ==========================================
-            Articles Grid & Cards
-            ========================================== */
-        .articles {
-            padding: 60px 0 100px 0;
-        }
-
-        .grid {
+        /* --- ニュース一覧（カードグリッド） --- */
+        .news-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            align-items: stretch;
-            /* 開閉用の設定 */
-            max-height: 580px; /* 初期表示（カード1段分）のおおよその高さ制限 */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 30px;
+        }
+        .news-card {
+            background-color: #1e1e1e;
+            border: 1px solid #2d2d2d;
+            border-radius: 8px;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        /* もっと見るが押された時の全表示スタイル */
-        .grid.is-expanded {
-            max-height: 4000px; /* カードが増えても対応できる十分な高さ */
-        }
-
-        .card {
-            background: var(--color-bg-sub);
-            text-decoration: none;
-            color: inherit;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--color-border);
-            transition: var(--transition-smooth);
             cursor: pointer;
-            height: 100%;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
         }
-
-        .card:hover {
-            border-color: var(--color-border-light);
-            background-color: var(--color-bg-box);
+        .news-card:hover {
+            transform: translateY(-4px);
+            border-color: #444444;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
-
-        .card-image-box {
+        .card-img {
             width: 100%;
-            height: 220px;
-            background-color: #ffffff; /* 画像自体の色や背景を活かすため白地に固定 */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 32px;
-            border-bottom: 1px solid var(--color-border);
-            flex-shrink: 0;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid #2d2d2d;
+            background-color: #121212;
         }
-
-        .card-image-box img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: var(--transition-smooth); /* カラーはそのまま保持 */
-        }
-
-        .card:hover .card-image-box img {
-            transform: scale(1.03);
-        }
-
         .card-body {
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+            padding: 20px;
         }
-
         .card-tag {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--color-text-light);
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 8px;
+            background-color: #2a2a2a;
+            color: #aaaaaa;
+            border-radius: 4px;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
             margin-bottom: 12px;
+            border: 1px solid #3d3d3d;
+        }
+        .card-title {
+            font-size: 1.15rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-weight: 600;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-date {
+            font-size: 0.8rem;
+            color: #777777;
         }
 
-        .card h3 {
-            font-size: 17px;
-            font-weight: 800;
-            line-height: 1.5;
-            margin-bottom: 16px;
-        }
-
-        .card p {
-            font-size: 13px;
-            color: var(--color-text-muted);
-            line-height: 1.8;
-        }
-
-        /* Statement Card Inline Custom */
-        .card .statement-sub-title {
-            font-weight: 700;
-            margin-top: 14px;
-            font-size: 13px;
-        }
-        .card .statement-list {
-            list-style: none;
-            margin-top: 6px;
-        }
-        .card .statement-list li {
-            position: relative;
-            padding-left: 14px;
-            font-size: 12px;
-            color: var(--color-text-muted);
-            margin-bottom: 4px;
-        }
-        .card .statement-list li::before {
-            content: "■";
-            font-size: 8px;
-            position: absolute;
-            left: 0;
-            top: 1px;
-            color: var(--color-text-main);
-        }
-
-        /* もっと見るボタンのスタイル */
-        .more-btn-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .more-news-btn {
-            background: transparent;
-            color: var(--color-text-main);
-            border: 1px solid var(--color-border);
-            padding: 12px 40px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-            text-transform: uppercase;
-        }
-
-        .more-news-btn:hover {
-            background: var(--color-text-main);
-            color: var(--color-bg-main);
-            border-color: var(--color-text-main);
-        }
-
-        /* ==========================================
-            Article Detail View Custom
-            ========================================== */
+        /* --- 記事詳細共通ビュー --- */
         .article-container {
-            max-width: 760px;
-            margin: 0 auto;
+            background-color: #1e1e1e;
+            border: 1px solid #2d2d2d;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
-
         .article-header {
-            margin-bottom: 40px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #2d2d2d;
+            padding-bottom: 20px;
         }
-
-        .article-header .back-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .back-btn {
             background: none;
-            border: 1px solid var(--color-border-light);
-            padding: 10px 24px;
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--color-text-main);
+            border: none;
+            color: #888888;
+            font-size: 0.95rem;
             cursor: pointer;
-            letter-spacing: 0.1em;
-            transition: var(--transition-smooth);
-            margin-bottom: 32px;
-        }
-
-        .article-header .back-btn:hover {
-            background: var(--color-text-main);
-            color: var(--color-bg-main);
-        }
-
-        .article-main-img {
-            width: 100%;
-            height: auto;
-            max-height: 440px;
-            background: #ffffff; /* 画像を綺麗に見せるための白背景 */
+            padding: 0;
+            margin-bottom: 20px;
+            transition: color 0.2s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 48px;
-            border: 1px solid var(--color-border);
-            margin-bottom: 40px;
         }
-
+        .back-btn:hover {
+            color: #ffffff;
+        }
+        .article-title {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin: 10px 0;
+            font-weight: 700;
+        }
+        .article-date {
+            font-size: 0.9rem;
+            color: #777777;
+        }
+        .article-main-img {
+            text-align: center;
+            margin-bottom: 30px;
+        }
         .article-main-img img {
             max-width: 100%;
-            max-height: 340px;
+            max-height: 400px;
+            border-radius: 6px;
+            border: 1px solid #2d2d2d;
             object-fit: contain;
         }
-
-        .article-title {
-            font-size: 30px;
-            font-weight: 900;
-            line-height: 1.4;
-            margin-bottom: 16px;
-            letter-spacing: 0.02em;
-        }
-
-        .article-date {
-            color: var(--color-text-light);
-            font-size: 13px;
-            font-weight: 600;
-        }
-
         .article-content-body {
-            font-size: 15px;
-            color: var(--color-text-muted);
-            line-height: 1.9;
+            font-size: 1rem;
+            color: #cccccc;
+            line-height: 1.8;
         }
-
-        .article-content-body p {
-            margin-bottom: 24px;
-        }
-
-        /* Peace Document Style (Article 3 Specific) */
-        .document-box {
-            background: var(--color-bg-sub);
-            padding: 48px;
-            border: 1px solid var(--color-border-light);
-        }
-
-        .document-title {
-            font-size: 19px;
-            font-weight: 900;
-            border-bottom: 1px solid var(--color-border-light);
-            padding-bottom: 12px;
-            margin-bottom: 32px;
-            letter-spacing: 0.05em;
-            color: var(--color-text-main);
-        }
-
-        .document-section-title {
-            font-weight: 900;
-            margin-top: 32px;
-            margin-bottom: 12px;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--color-text-main);
-        }
-
-        .statement-list-large {
-            list-style: none;
-            margin-bottom: 24px;
-        }
-
-        .statement-list-large li {
-            position: relative;
-            padding-left: 20px;
-            font-size: 13px;
-            margin-bottom: 10px;
-            color: var(--color-text-muted);
-        }
-
-        .statement-list-large li::before {
-            content: "■";
-            font-size: 9px;
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: var(--color-text-main);
-        }
-
-        /* ==========================================
-            About Section & Table
-            ========================================== */
-        .about-section {
-            background-color: var(--color-bg-sub);
-            padding: 100px 0;
-        }
-
-        .table-wrapper {
-            background: var(--color-bg-main);
-            border: 1px solid var(--color-border);
-            padding: 16px 32px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th, td {
-            padding: 24px;
-            font-size: 14px;
-            border-bottom: 1px solid var(--color-border);
-            vertical-align: middle;
-        }
-
-        th {
-            font-weight: 800;
-            width: 25%;
-            color: var(--color-text-main);
-            letter-spacing: 0.05em;
-        }
-
-        td {
-            color: var(--color-text-muted);
-        }
-
-        tr:last-child th, tr:last-child td {
-            border-bottom: none;
-        }
-
-        .about-flag {
-            border: 1px solid var(--color-border);
-            padding: 6px;
-            background: #ffffff; /* 国旗の白枠 */
-            display: inline-block;
-        }
-
-        /* ==========================================
-            Footer
-            ========================================== */
-        footer {
-            background-color: var(--color-bg-main);
-            color: var(--color-text-main);
-            padding: 80px 0;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .footer-inner {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .footer-logo {
-            font-size: 17px;
-            font-weight: 900;
-            letter-spacing: 0.25em;
+        .article-content-body h3 {
+            color: #ffffff;
             margin-bottom: 16px;
-            cursor: pointer;
+            font-size: 1.3rem;
+        }
+        .article-content-body p {
+            margin-bottom: 16px;
         }
 
-        .footer-sub {
-            font-size: 12px;
-            color: var(--color-text-light);
-            margin-bottom: 40px;
-            letter-spacing: 0.05em;
+        /* --- 文書・声明文用特別ボックススタイル --- */
+        .document-box {
+            background-color: #161616;
+            border: 1px solid #2d2d2d;
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        .document-title {
+            font-size: 1.4rem;
+            color: #ffffff;
+            font-weight: bold;
+            border-left: 4px solid #ffffff;
+            padding-left: 12px;
+            margin-bottom: 20px !important;
+        }
+        .document-section-title {
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: bold;
+            margin-top: 24px;
+            margin-bottom: 12px;
+        }
+        .statement-list-large {
+            list-style-type: square;
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        .statement-list-large li {
+            margin-bottom: 8px;
+            color: #cccccc;
         }
 
-        .copyright {
-            font-size: 11px;
-            color: var(--color-text-light);
-            letter-spacing: 0.05em;
-        }
-
-        /* ==========================================
-            Responsive Media Queries
-            ========================================== */
-        @media (max-width: 1024px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 32px;
-                max-height: 1140px; /* 2列表示の初期高さ */
-            }
-        }
-
+        /* レスポンシブ対応 */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 24px;
-            }
-            .grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-                max-height: 1700px; /* スマホ（1列表示）での3枚分の初期高さ */
-            }
-            nav {
-                display: none;
-            }
-            .hero {
-                padding: 80px 0 40px 0;
-            }
-            .hero h1 {
-                font-size: 32px;
+            .article-container {
+                padding: 20px;
             }
             .article-title {
-                font-size: 22px;
-            }
-            .document-box {
-                padding: 24px;
-            }
-            th, td {
-                display: block;
-                width: 100%;
-                padding: 12px 8px;
-            }
-            th {
-                border-bottom: none;
-                padding-top: 20px;
-            }
-            td {
-                padding-bottom: 20px;
+                font-size: 1.4rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- 共通ヘッダー -->
     <header>
-        <div class="container header-inner">
-            <div class="logo" onclick="navigateToSection(event, 'top')">MANCHUKUO <span>GOVERNMENT</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#articles" onclick="navigateToSection(event, 'articles')">NEWS</a></li>
-                    <li><a href="#about" onclick="navigateToSection(event, 'about')">ABOUT</a></li>
-                </ul>
-            </nav>
-        </div>
+        <div class="header-title">満州国 ポータルサイト</div>
+        <div class="header-sub">中華連邦構成国 - 公式ニュースアーカイブ</div>
     </header>
 
-    <!-- メインビューコンテナ -->
-    <div id="main-view-section" class="view-section">
-        <!-- Hero Section -->
-        <section class="hero container">
-            <span class="hero-tag">pacifist country</span>
-            <h1>満州国</h1>
-            <p>中華連邦の構成国であり、7月6日時点では中華連邦の中で一番でかい</p>
-        </section>
-
-        <!-- Articles Section -->
-        <section id="articles" class="articles container">
-            <h2 class="section-title">Latest News</h2>
-            <div class="grid" id="news-grid">
-                <!-- Card 1 -->
-                <div class="card" onclick="openArticle('article-0.9')">
-                    <div class="card-image-box">
-                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-tag">Territory</div>
-                        <h3>領土拡張③</h3>
-                        <p>7月6日に本土と、現実で言うリャオトン半島から中国と北朝鮮の国境をつなげました。</p>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="card" onclick="openArticle('article-1')">
-                    <div class="card-image-box">
-                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-tag">Territory</div>
-                        <h3>領土拡張②</h3>
-                        <p>7月5日に現実で言う、リャオトン半島から、中国と北朝鮮の国境を取得</p>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="card" onclick="openArticle('article-2')">
-                    <div class="card-image-box">
-                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-tag">Identity</div>
-                        <h3>領土拡張①</h3>
-                        <p>7月4日にリャオトン半島を取得</p>
-                    </div>
-                </div>
-                
-                <!-- Card 4 -->
-                <div class="card" onclick="openArticle('article-3')">
-                    <div class="card-image-box">
-                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
-                    </div>
-                    <div class="card-body">
-                        <div class="card-tag">Founding of the country</div>
-                        <h3>満州国建国！</h3>
-                        <p style="margin-bottom: 12px;"><strong>満州国情報</strong><br>[名前]:満州国<br>[首都]:多分ハルビン<br>[目標]:中華連邦のためにできる限り 尽くすこと</p>
-                    </div>
-                </div>
-            </div>
+    <!-- ニュース一覧ビュー -->
+    <div id="list-view" class="view-section container">
+        <div class="news-grid">
             
-            <!-- 「もっと見る」ボタン -->
-            <div class="more-btn-container">
-                <button class="more-news-btn" id="more-btn" onclick="toggleNews()">もっと見る</button>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="container">
-                <h2 class="section-title">About Manchukuo</h2>
-                <div class="table-wrapper">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <th>国名</th>
-                                <td>満州国（Manchukuo）</td>
-                            </tr>
-                            <tr>
-                                <th>国旗</th>
-                                <td>
-                                    <div class="about-flag">
-                                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" width="120" style="display: block;">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>主要特産品</th>
-                                <td>なし</td>
-                            </tr>
-                            <tr>
-                                <th>統治地域</th>
-                                <td>
-                                    1. ハルビン(首都)<br>
-                                    2. リャオトン半島<br>
-                                    3. その他(現実で言う中国と北朝鮮の国境線)
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- カード 0.9 -->
+            <div class="news-card" onclick="showArticle('article-0.9')">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
+                <div class="card-body">
+                    <div class="card-tag">Territory</div>
+                    <div class="card-title">領土拡張③：本土とリャオトン半島、国境線の接続完了</div>
+                    <div class="card-date">2026年7月6日</div>
                 </div>
             </div>
-        </section>
+
+            <!-- カード 1 -->
+            <div class="news-card" onclick="showArticle('article-1')">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
+                <div class="card-body">
+                    <div class="card-tag">Territory</div>
+                    <div class="card-title">領土拡張②：リャオトン半島から中国・北朝鮮国境の領土取得</div>
+                    <div class="card-date">2026年7月5日</div>
+                </div>
+            </div>
+
+            <!-- カード 2 -->
+            <div class="news-card" onclick="showArticle('article-2')">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
+                <div class="card-body">
+                    <div class="card-tag">Identity</div>
+                    <div class="card-title">領土拡張①：リャオトン半島の領土取得と統治開始</div>
+                    <div class="card-date">2026年7月4日</div>
+                </div>
+            </div>
+
+            <!-- カード 3 -->
+            <div class="news-card" onclick="showArticle('article-3')">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" class="card-img">
+                <div class="card-body">
+                    <div class="card-tag">Founding of the country</div>
+                    <div class="card-title">満州国建国！中華連邦の構成国として発足</div>
+                    <div class="card-date">2026年7月3日</div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- 各記事詳細ビュー -->
@@ -714,18 +275,17 @@
             <div class="article-header">
                 <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
                 <div class="card-tag">Territory</div>
-                <h1 class="article-title">フィリピンの北部完全併合</h1>
-                <p class="article-date">発表日: 2026年6月8日</p>
+                <h1 class="article-title">領土拡張③：本土とリャオトン半島、国境線の接続完了</h1>
+                <p class="article-date">発表日: 2026年7月6日</p>
             </div>
             <div class="article-main-img">
-                <img src="https://i.imgur.com/rJd5lf1.png" alt="満州国国旗">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
             </div>
             <div class="article-content-body">
-                <h3>わが国はフィリピン北部を完全併合しました。</h3>
-                <p>2026年6月12日 満州国はフィリピン北部を完全併合しました！。<br>
-                つぎは南部も行きたいのですが疲れたのと、維持費が足りなくなると思うので<br>
-                維持費を稼ぎ次第空いてる南部に行こうと思います。
-                </p>
+                <h3>満州国の領土がさらに拡大し、重要ルートが接続されました。</h3>
+                <p>2026年7月6日、満州国政府は我が国の更なる発展に向けた領土拡張計画の第3段階を完了したことを公式に発表いたします。</p>
+                <p>今回の拡張により、満州国の本土と、現実で言うところの「リャオトン半島」から「中国と北朝鮮の国境線」までを完全に繋ぐことに成功いたしました。これにより領土の一体化が強化され、中華連邦構成国の中でも極めて大きな影響力を持つ地域としての基盤が整いました。</p>
+                <p>今後もこの広大な領土の安定した維持と発展を目指し、国家運営を進めてまいります。</p>
             </div>
         </div>
     </div>
@@ -735,16 +295,15 @@
             <div class="article-header">
                 <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
                 <div class="card-tag">Territory</div>
-                <h1 class="article-title">アラスカ南部の一部地域において占領・統治を完了</h1>
-                <p class="article-date">発表日: 2026年6月8日</p>
+                <h1 class="article-title">領土拡張②：リャオトン半島から中国・北朝鮮国境の領土取得</h1>
+                <p class="article-date">発表日: 2026年7月5日</p>
             </div>
             <div class="article-main-img">
-                <img src="https://i.imgur.com/rJd5lf1.png" alt="満州国国旗">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
             </div>
             <div class="article-content-body">
-                <p>2026年6月8日、満州国政府はアラスカ南部における一部地域の占領および安定的な統治体制の確立が完了したことを公式に発表しました。</p>
-                <p>本計画は長期にわたり慎重に進められてきたものであり、今回の統治完了に伴い、満州国はフィリピン地域、アラスカ地域の双方に領土・拠点を有する、国際的にも大変ユニークなミクロネーション（架空国家）としての地位をさらに強固なものとしました。</p>
-                <p>総理（または元首）は世界中の平和と繁栄を願っています。</p>
+                <p>2026年7月5日、満州国は領土拡張計画の第2段階として、現実で言う「リャオトン半島」を起点とし、「中国と北朝鮮の国境線」に位置する重要な領域の取得・統治を完了いたしました。</p>
+                <p>本計画は、中華連邦の東部前線における安全確保と経済圏の確保を目的とした非常に重要なステップです。満州国はこの新たな領土において、迅速に統治体制を確立し、地域社会の安定化に努めてまいります。我が国は着実にその規模を拡大しており、さらなる統合に向けて前進しています。</p>
             </div>
         </div>
     </div>
@@ -754,15 +313,15 @@
             <div class="article-header">
                 <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
                 <div class="card-tag">Identity</div>
-                <h1 class="article-title">満州国の歴史と未来を融合した、新国旗デザインへと刷新</h1>
-                <p class="article-date">発表日: 2026年6月8日</p>
+                <h1 class="article-title">領土拡張①：リャオトン半島の領土取得と統治開始</h1>
+                <p class="article-date">発表日: 2026年7月4日</p>
             </div>
             <div class="article-main-img">
-                <img src="https://i.imgur.com/HTfxQXp.png" alt="満州国国旗">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
             </div>
             <div class="article-content-body">
-                <p>満州国の国家のシンボルである「国旗」が、公式に新たなデザインへと刷新されました。</p>
-                <p>新しい国旗は、満州国のシンボルとして制定されています。</p>
+                <p>2026年7月4日、満州国政府は国家の経済・戦略的要衝となる「リャオトン半島」地域を公式に取得し、我が国の領土として統治を開始したことを発表いたしました。</p>
+                <p>このリャオトン半島の取得は、満州国が描く広大な国家運営の第一歩であり、ここを拠点にさらなる領土の拡大とインフラの整備を進める方針です。満州国の新しい歴史はここから着実に積み上げられていきます。</p>
             </div>
         </div>
     </div>
@@ -771,16 +330,24 @@
         <div class="article-container">
             <div class="article-header">
                 <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
-                <div class="card-tag">Philosophy</div>
-                <h1 class="article-title">【公式声明】世界の国々との調和を目指す「平和主義声明」</h1>
-                <p class="article-date">発表日: 2026年6月8日</p>
+                <div class="card-tag">Founding of the country</div>
+                <h1 class="article-title">満州国建国！中華連邦の構成国として発足</h1>
+                <p class="article-date">発表日: 2026年7月3日</p>
             </div>
             <div class="article-main-img">
-                <img src="https://i.imgur.com/HTfxQXp.png" alt="満州国国旗">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
             </div>
             <div class="article-content-body document-box">
-                <p class="document-title">満州国 平和主義声明全文</p>
-                <p><strong>第1条 声明の主旨</strong><br>この声明は国民や国家首相が戦争をしたくないということで作りました。</p>
+                <p class="document-title">満州国 平和主義声明および国家方針全文</p>
+                <p style="margin-bottom: 24px;">
+                    <strong>【満州国 基本情報】</strong><br>
+                    ・[名前]：満州国 (Manchukuo)<br>
+                    ・[首都]：ハルビン (Harbin)<br>
+                    ・[目標]：中華連邦のためにできる限り尽くすこと
+                </p>
+                
+                <p><strong>第1条 声明の主旨</strong><br>この声明は、満州国の国民および国家首相が戦争を望まず、平和を重んじる国家であることを示すために作られました。</p>
+                
                 <p class="document-section-title">第2条 満州国の禁止事項</p>
                 <ul class="statement-list-large">
                     <li>世界各国やその人々への誹謗中傷、不名誉な攻撃を行うこと。</li>
@@ -788,83 +355,60 @@
                     <li>国際社会において、いかなる戦争行為もこれを行わないこと。</li>
                     <li>他国との軍事系同盟や、それに類する防衛・攻撃を前提とした協定への参加。</li>
                 </ul>
+                
                 <p class="document-section-title">＜世界の国々への明確な禁止事項＞</p>
                 <ul class="statement-list-large">
                     <li>非武装および平和を愛する「満州国」を攻め、侵略すること。</li>
                     <li>満州国に対する一方的な誹謗中傷、名誉毀損、および暴言。</li>
                 </ul>
+                
                 <p class="document-section-title">第3条 満州国が許される権利・範囲</p>
                 <ul class="statement-list-large">
-                    <li>自衛の目的における、必要最低限の兵器・防衛用機材の製造。</li>
+                    <li>自衛の目的における、必要最低限の兵器・防衛用機材の製造.</li>
                     <li>外部からの侵入を防ぐための壁、および自衛のための堅牢な防衛線の設置。</li>
                     <li>国家の安全を確保するための、傀儡地域や緩衝地帯（バッファゾーン）の設定。</li>
                     <li>経済や文化など、軍事系同盟「以外」の平和的な同盟への積極的な参加。</li>
                     <li>万が一、他国より不当に攻められた場合、徹底的な防衛のために軍を率いて自国の安全と国民を守るために戦うこと。</li>
                 </ul>
+                
                 <p class="document-section-title">第4条 最後に</p>
                 <p style="font-size: 14px; margin-bottom: 0;">うちの国は戦争をしたくないです。
                 でも世界の国とは仲良くしたいと思ってます！
-                仲良くしてくれる方ぜひ仲良くしたいです！
+                中華連邦のために全力を尽くすとともに、仲良くしてくれる方とはぜひ仲良くしたいです！
                 </p>
             </div>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-inner">
-            <div class="footer-logo" onclick="navigateToSection(event, 'top')">MANCHUKUO</div>
-            <div class="footer-sub">Inspired by Media-Culture & Modern Microstate Lifestyle.</div>
-            <div class="copyright">&copy; Manchukuo. All Rights Reserved.</div>
-        </div>
-    </footer>
-
-    <!-- JavaScript -->
+    <!-- 表示切り替え用JavaScript -->
     <script>
-        function toggleNews() {
-            var grid = document.getElementById('news-grid');
-            var btn = document.getElementById('more-btn');
-            grid.classList.toggle('is-expanded');
-            if (grid.classList.contains('is-expanded')) {
-                btn.innerText = '閉じる';
-            } else {
-                btn.innerText = 'もっと見る';
-                document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
-        function openArticle(articleId) {
-            document.getElementById('main-view-section').style.display = 'none';
-            var details = document.getElementsByClassName('article-detail-section');
-            for (var i = 0; i < details.length; i++) {
-                details[i].style.display = 'none';
-            }
+        // 指定した記事詳細を開く関数
+        function showArticle(articleId) {
+            // 一覧を非表示にする
+            document.getElementById('list-view').style.display = 'none';
+            
+            // すべての詳細セクションを一旦非表示にする
+            const details = document.querySelectorAll('.article-detail-section');
+            details.forEach(detail => detail.style.display = 'none');
+            
+            // 対象の記事だけを表示する
             document.getElementById(articleId).style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // 画面最上部へスクロール
+            window.scrollTo(0, 0);
         }
 
+        // ニュース一覧に戻る関数
         function showListView() {
-            var details = document.getElementsByClassName('article-detail-section');
-            for (var i = 0; i < details.length; i++) {
-                details[i].style.display = 'none';
-            }
-            document.getElementById('main-view-section').style.display = 'block';
-        }
-
-        function navigateToSection(event, targetId) {
-            event.preventDefault();
-            showListView();
-            if (targetId === 'top') {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-                var targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    var headerOffset = 80;
-                    var elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                    var offsetPosition = elementPosition - headerOffset;
-                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                }
-            }
+            // すべての詳細セクションを非表示にする
+            const details = document.querySelectorAll('.article-detail-section');
+            details.forEach(detail => detail.style.display = 'none');
+            
+            // 一覧を表示する
+            document.getElementById('list-view').style.display = 'block';
+            
+            // 画面最上部へスクロール
+            window.scrollTo(0, 0);
         }
     </script>
 </body>
