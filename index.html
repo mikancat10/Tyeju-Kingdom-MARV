@@ -3,267 +3,845 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中華連邦 構成国｜満州国公式ポータル</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="MARVというマイクラの国家運営サーバーの国家「満州国」の公式サイトです。平和主義の国家です。">
+    <link rel="icon" href="https://i.imgur.com/a08J13l.png">
+    <title>中華連邦構成国 満州国 | MARV</title>
     <style>
+        /* ==========================================
+            CSS Variables & Base Reset
+            ========================================== */
         :root {
-            --bg-color: #0a0a0c;
-            --panel-bg: rgba(255, 255, 255, 0.03);
-            --panel-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f0f0f3;
-            --text-sub: #a0a0aa;
-            --accent-glow: rgba(255, 255, 255, 0.15);
+            --color-bg-main: #141416;     /* メイン背景：極暗グレー */
+            --color-bg-sub: #202023;       /* サブ背景・カード等：ダークグレー */
+            --color-bg-box: #2a2a2e;       /* 内包ボックス：ミディアムグレー */
+            --color-text-main: #ffffff;    /* メイン文字：純白 */
+            --color-text-muted: #e4e4e7;   /* サブ文字：明るいグレー */
+            --color-text-light: #8b8b93;   /* 補足文字：ディープグレー */
+            --color-border: #4a4a4e;       /* 境界線：シャープなグレー */
+            --color-border-light: #71717a; /* 強調境界線 */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Helvetica Neue', Arial, 'Segoe UI', sans-serif;
+            box-sizing: border-box;
+            border-radius: 0 !important; /* すべての角丸を完全に無効化 */
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.02) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.02) 0%, transparent 40%);
+            font-family: var(--font-family);
+            background-color: var(--color-bg-main);
+            color: var(--color-text-main);
+            line-height: 1.8;
+            letter-spacing: 0.06em;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ヘッダー */
+        /* Common Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ==========================================
+            Header
+            ========================================== */
         header {
-            width: 100%;
-            padding: 20px 40px;
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            background-color: rgba(20, 20, 22, 0.85);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+        }
+
+        .header-inner {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--panel-border);
-            backdrop-filter: blur(12px);
-            position: fixed;
-            top: 0;
-            z-index: 100;
+            height: 80px;
         }
 
         .logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            font-size: 19px;
+            font-weight: 900;
+            letter-spacing: 0.2em;
+            cursor: pointer;
+            color: var(--color-text-main);
             text-transform: uppercase;
         }
 
         .logo span {
-            color: var(--text-sub);
-            font-size: 0.8rem;
-            margin-left: 10px;
+            font-weight: 300;
+            color: var(--color-text-muted);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
         }
 
         nav a {
-            color: var(--text-sub);
             text-decoration: none;
-            margin-left: 24px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            color: var(--color-text-main);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            position: relative;
+            padding: 4px 0;
+            transition: var(--transition-smooth);
         }
 
-        nav a:hover {
-            color: var(--text-main);
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-text-main);
+            transition: var(--transition-smooth);
         }
 
-        /* メインレイアウト */
-        main {
-            max-width: 1200px;
-            margin: 120px auto 60px;
-            padding: 0 20px;
+        nav a:hover::after {
+            width: 100%;
         }
 
-        /* ヒーローセクション */
+        /* ==========================================
+            Hero Section
+            ========================================== */
         .hero {
+            padding: 120px 0 80px 0;
             text-align: center;
-            padding: 60px 20px;
-            margin-bottom: 40px;
+        }
+
+        .hero-tag {
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--color-bg-main);
+            background: var(--color-text-main);
+            padding: 4px 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            margin-bottom: 24px;
+            display: inline-block;
         }
 
         .hero h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+            font-size: 44px;
+            font-weight: 900;
+            line-height: 1.25;
+            margin-bottom: 24px;
+            letter-spacing: 0.08em;
         }
 
         .hero p {
-            color: var(--text-sub);
-            font-size: 1.1rem;
-            letter-spacing: 1px;
+            font-size: 15px;
+            color: var(--color-text-muted);
+            max-width: 640px;
+            margin: 0 auto;
         }
 
-        /* グリッドレイアウト */
+        /* Section Title */
+        .section-title {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 0.15em;
+            margin-bottom: 48px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--color-border-light);
+        }
+
+        /* View Switching System */
+        .view-section {
+            display: block;
+        }
+        .article-detail-section {
+            display: none;
+            padding: 60px 0 120px 0;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ==========================================
+            Articles Grid & Cards
+            ========================================== */
+        .articles {
+            padding: 60px 0 100px 0;
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            align-items: stretch;
+            max-height: 580px; /* 初期表示（カード1段分）のおおよその高さ制限 */
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* ガラスモルフィズム カード型パネル */
-        .panel {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            backdrop-filter: blur(16px);
-            border-radius: 12px;
-            padding: 30px;
-            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        /* もっと見るが押された時の全表示スタイル */
+        .grid.is-expanded {
+            max-height: 4000px;
         }
 
-        .panel:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-
-        .col-12 { grid-column: span 12; }
-        .col-8 { grid-column: span 8; }
-        .col-4 { grid-column: span 4; }
-
-        @media (max-width: 768px) {
-            .col-8, .col-4 { grid-column: span 12; }
-        }
-
-        h2 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            border-left: 3px solid var(--text-main);
-            padding-left: 12px;
-        }
-
-        /* コンテンツ要素 */
-        .status-list {
-            list-style: none;
-        }
-
-        .status-list li {
+        .card {
+            background: var(--color-bg-sub);
+            text-decoration: none;
+            color: inherit;
             display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            flex-direction: column;
+            border: 1px solid var(--color-border);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            height: 100%;
         }
 
-        .status-list li:last-child {
+        .card:hover {
+            border-color: var(--color-border-light);
+            background-color: var(--color-bg-box);
+        }
+
+        .card-image-box {
+            width: 100%;
+            height: 220px;
+            background-color: #ffffff; /* 国旗の白地をそのまま活かす */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            border-bottom: 1px solid var(--color-border);
+            flex-shrink: 0;
+        }
+
+        .card-image-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: var(--transition-smooth);
+        }
+
+        .card:hover .card-image-box img {
+            transform: scale(1.03);
+        }
+
+        .card-body {
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-tag {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            font-size: 17px;
+            font-weight: 800;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            font-size: 13px;
+            color: var(--color-text-muted);
+            line-height: 1.8;
+        }
+
+        /* もっと見るボタンのスタイル */
+        .more-btn-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .more-news-btn {
+            background: transparent;
+            color: var(--color-text-main);
+            border: 1px solid var(--color-border);
+            padding: 12px 40px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-transform: uppercase;
+        }
+
+        .more-news-btn:hover {
+            background: var(--color-text-main);
+            color: var(--color-bg-main);
+            border-color: var(--text-main);
+        }
+
+        /* ==========================================
+            Article Detail View Custom
+            ========================================== */
+        .article-container {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-header .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: 1px solid var(--color-border-light);
+            padding: 10px 24px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--color-text-main);
+            cursor: pointer;
+            letter-spacing: 0.1em;
+            transition: var(--transition-smooth);
+            margin-bottom: 32px;
+        }
+
+        .article-header .back-btn:hover {
+            background: var(--color-text-main);
+            color: var(--color-bg-main);
+        }
+
+        .article-main-img {
+            width: 100%;
+            height: auto;
+            max-height: 440px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 48px;
+            border: 1px solid var(--color-border);
+            margin-bottom: 40px;
+        }
+
+        .article-main-img img {
+            max-width: 100%;
+            max-height: 340px;
+            object-fit: contain;
+        }
+
+        .article-title {
+            font-size: 30px;
+            font-weight: 900;
+            line-height: 1.4;
+            margin-bottom: 16px;
+            letter-spacing: 0.02em;
+        }
+
+        .article-date {
+            color: var(--color-text-light);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .article-content-body {
+            font-size: 15px;
+            color: var(--color-text-muted);
+            line-height: 1.9;
+        }
+
+        .article-content-body p {
+            margin-bottom: 24px;
+        }
+
+        /* Peace Document Style */
+        .document-box {
+            background: var(--color-bg-sub);
+            padding: 48px;
+            border: 1px solid var(--color-border-light);
+        }
+
+        .document-title {
+            font-size: 19px;
+            font-weight: 900;
+            border-bottom: 1px solid var(--color-border-light);
+            padding-bottom: 12px;
+            margin-bottom: 32px;
+            letter-spacing: 0.05em;
+            color: var(--color-text-main);
+        }
+
+        .document-section-title {
+            font-weight: 900;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-main);
+        }
+
+        .statement-list-large {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .statement-list-large li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 13px;
+            margin-bottom: 10px;
+            color: var(--color-text-muted);
+        }
+
+        .statement-list-large li::before {
+            content: "■";
+            font-size: 9px;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--color-text-main);
+        }
+
+        /* ==========================================
+            About Section & Table
+            ========================================== */
+        .about-section {
+            background-color: var(--color-bg-sub);
+            padding: 100px 0;
+        }
+
+        .table-wrapper {
+            background: var(--color-bg-main);
+            border: 1px solid var(--color-border);
+            padding: 16px 32px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 24px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: middle;
+        }
+
+        th {
+            font-weight: 800;
+            width: 25%;
+            color: var(--color-text-main);
+            letter-spacing: 0.05em;
+        }
+
+        td {
+            color: var(--color-text-muted);
+        }
+
+        tr:last-child th, tr:last-child td {
             border-bottom: none;
         }
 
-        .status-label {
-            color: var(--text-sub);
-        }
-
-        .news-item {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .news-date {
-            font-size: 0.8rem;
-            color: var(--text-sub);
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        /* コントロールボタン風リンク */
-        .btn {
+        .about-flag {
+            border: 1px solid var(--color-border);
+            padding: 6px;
+            background: #ffffff;
             display: inline-block;
-            background: var(--text-main);
-            color: var(--bg-color);
-            padding: 10px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-top: 15px;
-            transition: opacity 0.3s;
         }
 
-        .btn:hover {
-            opacity: 0.9;
-        }
-
+        /* ==========================================
+            Footer
+            ========================================== */
         footer {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-sub);
-            font-size: 0.8rem;
-            border-top: 1px solid var(--panel-border);
-            margin-top: 60px;
+            background-color: var(--color-bg-main);
+            color: var(--color-text-main);
+            padding: 80px 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: 0.25em;
+            margin-bottom: 16px;
+            cursor: pointer;
+        }
+
+        .footer-sub {
+            font-size: 12px;
+            color: var(--color-text-light);
+            margin-bottom: 40px;
+            letter-spacing: 0.05em;
+        }
+
+        .copyright {
+            font-size: 11px;
+            color: var(--color-text-light);
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================
+            Responsive Media Queries
+            ========================================== */
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+                max-height: 1140px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                max-height: 1700px;
+            }
+            nav {
+                display: none;
+            }
+            .hero {
+                padding: 80px 0 40px 0;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .article-title {
+                font-size: 22px;
+            }
+            .document-box {
+                padding: 24px;
+            }
+            th, td {
+                display: block;
+                width: 100%;
+                padding: 12px 8px;
+            }
+            th {
+                border-bottom: none;
+                padding-top: 20px;
+            }
+            td {
+                padding-bottom: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
-        <div class="logo">MANCHUKUO<span>中華連邦構成国</span></div>
-        <nav>
-            <a href="#overview">概要</a>
-            <a href="#laws">法典</a>
-            <a href="#access">接続</a>
-        </nav>
+        <div class="container header-inner">
+            <div class="logo" onclick="navigateToSection(event, 'top')">MANCHUKUO <span>GOVERNMENT</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#articles" onclick="navigateToSection(event, 'articles')">NEWS</a></li>
+                    <li><a href="#about" onclick="navigateToSection(event, 'about')">ABOUT</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>MANCHUKUO</h1>
-            <p>MARV Server - Federated States of China</p>
+    <!-- メインビューコンテナ -->
+    <div id="main-view-section" class="view-section">
+        <!-- Hero Section -->
+        <section class="hero container">
+            <span class="hero-tag">pacifist country</span>
+            <h1>満州国</h1>
+            <p>中華連邦の構成国であり、現時点で連邦内最大の領土を有する平和主義国家</p>
         </section>
 
-        <div class="grid">
-            <!-- 国家ステータス -->
-            <div class="panel col-4">
-                <h2>国家情報</h2>
-                <ul class="status-list">
-                    <li>
-                        <span class="status-label">所属</span>
-                        <span>中華連邦</span>
-                    </li>
-                    <li>
-                        <span class="status-label">政治体制</span>
-                        <span>立憲君主制 / 連邦構成国</span>
-                    </li>
-                    <li>
-                        <span class="status-label">管轄サーバー</span>
-                        <span>MARV国家運営Server</span>
-                    </li>
-                    <li>
-                        <span class="status-label">主要開発者</span>
-                        <span>Mikan</span>
-                    </li>
+        <!-- Articles Section -->
+        <section id="articles" class="articles container">
+            <h2 class="section-title">Latest News</h2>
+            <div class="grid" id="news-grid">
+                <!-- Card 1 -->
+                <div class="card" onclick="openArticle('article-0.9')">
+                    <div class="card-image-box">
+                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag">Territory</div>
+                        <h3>領土拡張③</h3>
+                        <p>本土、およびリャオトン半島から中国・北朝鮮国境を結ぶラインへの領土拡張。インフラ整備計画始動。</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card" onclick="openArticle('article-1')">
+                    <div class="card-image-box">
+                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag">Territory</div>
+                        <h3>領土拡張②</h3>
+                        <p>リャオトン半島から中国と北朝鮮の国境沿いにかかる重要地域の取得と、安定的統治体制の確立。</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card" onclick="openArticle('article-2')">
+                    <div class="card-image-box">
+                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag">Identity</div>
+                        <h3>領土拡張① ＆ 新国旗刷新</h3>
+                        <p>リャオトン半島の新規取得、および王国の歴史と未来を融合した新国旗デザインへの公式アップデート。</p>
+                    </div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div class="card" onclick="openArticle('article-3')">
+                    <div class="card-image-box">
+                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-tag">Philosophy</div>
+                        <h3>平和主義声明の発表</h3>
+                        <p style="margin-bottom: 12px;"><strong>【公式声明】</strong><br>国際社会との調和、および戦争・武力介入の全面禁止を掲げた満州国平和主義声明の全文。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 「もっと見る」ボタン -->
+            <div class="more-btn-container">
+                <button class="more-news-btn" id="more-btn" onclick="toggleNews()">もっと見る</button>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">About Manchukuo</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>国名</th>
+                                <td>満州国（Manchukuo）</td>
+                            </tr>
+                            <tr>
+                                <th>所属</th>
+                                <td>中華連邦 構成国</td>
+                            </tr>
+                            <tr>
+                                <th>国旗</th>
+                                <td>
+                                    <div class="about-flag">
+                                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗" width="120" style="display: block;">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>国家方針</th>
+                                <td>完全平和主義 / 連邦への貢献と開発</td>
+                            </tr>
+                            <tr>
+                                <th>統治地域</th>
+                                <td>
+                                    1. ハルビン（首都）<br>
+                                    2. リャオトン半島<br>
+                                    3. 中国・北朝鮮国境線沿い地域
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 各記事詳細ビュー -->
+    <div id="article-0.9" class="article-detail-section container">
+        <div class="article-container">
+            <div class="article-header">
+                <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
+                <div class="card-tag">Territory</div>
+                <h1 class="article-title">領土拡張③：本土から国境線への接続完了</h1>
+                <p class="article-date">発表日: 2026年7月6日</p>
+            </div>
+            <div class="article-main-img">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
+            </div>
+            <div class="article-content-body">
+                <h3>本土と国境線の完全なるネットワーク化</h3>
+                <p>満州国政府は、本日7月6日、自国本土とリャオトン半島、および中国と北朝鮮の国境エリアを完全に繋ぐ領土拡張に成功したことを宣言します。</p>
+                <p>本拡張により、満州国は中華連邦内において最大の領土を有する構成国となりました。今後は平和主義の理念に則り、この広大な領土の効率的なインフラ整備と自動化都市開発を進めてまいります。</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="article-1" class="article-detail-section container">
+        <div class="article-container">
+            <div class="article-header">
+                <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
+                <div class="card-tag">Territory</div>
+                <h1 class="article-title">領土拡張②：リャオトン半島から国境エリアの統治体制確立</h1>
+                <p class="article-date">発表日: 2026年7月5日</p>
+            </div>
+            <div class="article-main-img">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
+            </div>
+            <div class="article-content-body">
+                <h3>安定的な統治体制の構築</h3>
+                <p>2026年7月5日、満州国政府はリャオトン半島から現実の中国・北朝鮮国境にあたる重要地域までの占領・統治プロセスが計画通り完了したことを報告します。</p>
+                <p>この地域は連邦全体の物流および防衛の観点からも重要な拠点であり、非武装を前提とした強固な防衛ラインおよび安全な緩衝地帯（バッファゾーン）としての整備が予定されています。</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="article-2" class="article-detail-section container">
+        <div class="article-container">
+            <div class="article-header">
+                <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
+                <div class="card-tag">Identity</div>
+                <h1 class="article-title">領土拡張①および新国旗デザインへの公式刷新</h1>
+                <p class="article-date">発表日: 2026年7月4日</p>
+            </div>
+            <div class="article-main-img">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
+            </div>
+            <div class="article-content-body">
+                <h3>新たな拠点「リャオトン半島」の取得とシンボルの更新</h3>
+                <p>満州国は7月4日、最初の領土拡張計画としてリャオトン半島を公式に取得しました。本拠点は王国の未来を築くための第一歩となります。</p>
+                <p>これに伴い、満州国の国家シンボルである「国旗」を、歴史と未来の調和を表現した新デザインへと公式に刷新いたしました。洗練された新しい旗のもと、平和的かつ先進的な国造りを行ってまいります。</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="article-3" class="article-detail-section container">
+        <div class="article-container">
+            <div class="article-header">
+                <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
+                <div class="card-tag">Philosophy</div>
+                <h1 class="article-title">【公式声明】世界の国々との調和を目指す「平和主義声明」</h1>
+                <p class="article-date">発表日: 2026年7月4日</p>
+            </div>
+            <div class="article-main-img">
+                <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
+            </div>
+            <div class="article-content-body document-box">
+                <p class="document-title">満州国 平和主義声明全文</p>
+                <p><strong>第1条 声明の主旨</strong><br>この声明は国民および国家首相が、一切の戦争を望まないという確固たる意志に基づいて策定されました。</p>
+                <p class="document-section-title">第2条 満州国の禁止事項</p>
+                <ul class="statement-list-large">
+                    <li>世界各国やその人々への誹謗中傷、不名誉な攻撃を行うこと。</li>
+                    <li>世界各国で発生するあらゆる戦争・紛争への参加、および武力による加担。</li>
+                    <li>国際社会において、いかなる戦争行為もこれを行わないこと。</li>
+                    <li>他国との軍事系同盟や、それに類する防衛・攻撃を前提とした協定への参加。</li>
                 </ul>
-            </div>
-
-            <!-- 広報・ニュース -->
-            <div class="panel col-8">
-                <h2>最新公報</h2>
-                <div class="news-item">
-                    <span class="news-date">2026.07.06</span>
-                    <p>満州国公式デジタルポータルを開設。連邦内でのインフラ整備計画を策定中。</p>
-                </div>
-                <div class="news-item">
-                    <span class="news-date">2026.06.20</span>
-                    <p>中華連邦憲章に基づき、国内の特区区分および建築ガイドラインの改定を実施。</p>
-                </div>
-            </div>
-
-            <!-- 憲章・基本方針 -->
-            <div class="panel col-12" id="overview">
-                <h2>国家基本方針</h2>
-                <p style="line-height: 1.8; color: var(--text-sub);">
-                    我が満州国は、MARVサーバーにおける中華連邦の構成国として、先進的な都市開発と強固なコミュニティ基盤の確立を目指す。
-                    モノクロームを基調とした洗練された建築と、効率的な自動化機構を調和させ、連邦の発展に寄与する。
+                <p class="document-section-title">＜世界の国々への明確な禁止事項＞</p>
+                <ul class="statement-list-large">
+                    <li>非武装および平和を愛する「満州国」を攻め、侵略すること。</li>
+                    <li>満州国に対する一方的な誹謗中傷、名誉毀損、および暴言。</li>
+                </ul>
+                <p class="document-section-title">第3条 満州国が許される権利・範囲</p>
+                <ul class="statement-list-large">
+                    <li>自衛の目的における、必要最低限の兵器・防衛用機材の製造。</li>
+                    <li>外部からの侵入を防ぐための壁、および自衛のための堅牢な防衛線の設置。</li>
+                    <li>国家の安全を確保するための、傀儡地域や緩衝地帯（バッファゾーン）の設定。</li>
+                    <li>経済や文化など、軍事系同盟「以外」の平和的な同盟への積極的な参加。</li>
+                    <li>万が一、他国より不当に攻められた場合、徹底的な防衛のために軍を率いて自国の安全と国民を守るために戦うこと。</li>
+                </ul>
+                <p class="document-section-title">第4条 最後に</p>
+                <p style="font-size: 14px; margin-bottom: 0;">わが国は戦争を強く否定し、平和を望みます。
+                しかし、国際社会のすべての国々とは良好な関係を築きたいと考えています。
+                平和的な交流を望んでいただける国家・プレイヤーの皆様、ぜひ手を取り合いましょう！
                 </p>
             </div>
         </div>
-    </main>
+    </div>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 中華連邦構成国 満州国 (MARV Server). Designed by Mikan.</p>
+        <div class="container footer-inner">
+            <div class="footer-logo" onclick="navigateToSection(event, 'top')">MANCHUKUO</div>
+            <div class="footer-sub">Inspired by Media-Culture & Modern Microstate Lifestyle.</div>
+            <div class="copyright">&copy; Manchukuo. All Rights Reserved.</div>
+        </div>
     </footer>
 
+    <!-- JavaScript -->
+    <script>
+        function toggleNews() {
+            var grid = document.getElementById('news-grid');
+            var btn = document.getElementById('more-btn');
+            grid.classList.toggle('is-expanded');
+            if (grid.classList.contains('is-expanded')) {
+                btn.innerText = '閉じる';
+            } else {
+                btn.innerText = 'もっと見る';
+                document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function openArticle(articleId) {
+            document.getElementById('main-view-section').style.display = 'none';
+            var details = document.getElementsByClassName('article-detail-section');
+            for (var i = 0; i < details.length; i++) {
+                details[i].style.display = 'none';
+            }
+            document.getElementById(articleId).style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showListView() {
+            var details = document.getElementsByClassName('article-detail-section');
+            for (var i = 0; i < details.length; i++) {
+                details[i].style.display = 'none';
+            }
+            document.getElementById('main-view-section').style.display = 'block';
+        }
+
+        function navigateToSection(event, targetId) {
+            event.preventDefault();
+            showListView();
+            if (targetId === 'top') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                var targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    var headerOffset = 80;
+                    var elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    var offsetPosition = elementPosition - headerOffset;
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                }
+            }
+        }
+    </script>
 </body>
 </html>
