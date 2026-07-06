@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="MARVというマイクラの国家運営サーバーの国家「済州王国」の公式サイトです。フィリピン、アラスカの領土を有する、平和主義の国家です。">
+    <meta name="description" content="MARVというマイクラの国家運営サーバーの国家「満州国」の公式サイトです。フィリピン、アラスカの領土を有する、平和主義の国家です。">
     <link rel="icon" href="https://i.imgur.com/a08J13l.png">
-    <title>中華連邦構成国 満州国| MARV</title>
+    <title>中華連邦構成国 満州国 | MARV</title>
     <style>
         /* ==========================================
-           CSS Variables & Base Reset
-           ========================================== */
+            CSS Variables & Base Reset
+            ========================================== */
         :root {
-            --color-bg-main: #202020;      /* メイン背景：純黒 */
+            --color-bg-main: #202020;     /* メイン背景：純黒 */
             --color-bg-sub: #393939;       /* サブ背景・カード等：ダークグレー */
             --color-bg-box: #313131;       /* 内包ボックス：ミディアムグレー */
             --color-text-main: #ffffff;    /* メイン文字：純白 */
@@ -48,8 +48,8 @@
         }
 
         /* ==========================================
-           Header
-           ========================================== */
+            Header
+            ========================================== */
         header {
             border-bottom: 1px solid var(--color-border);
             position: sticky;
@@ -115,8 +115,8 @@
         }
 
         /* ==========================================
-           Hero Section
-           ========================================== */
+            Hero Section
+            ========================================== */
         .hero {
             padding: 120px 0 80px 0;
             text-align: center;
@@ -184,8 +184,8 @@
         }
 
         /* ==========================================
-           Articles Grid & Cards
-           ========================================== */
+            Articles Grid & Cards
+            ========================================== */
         .articles {
             padding: 60px 0 100px 0;
         }
@@ -327,8 +327,8 @@
         }
 
         /* ==========================================
-           Article Detail View Custom
-           ========================================== */
+            Article Detail View Custom
+            ========================================== */
         .article-container {
             max-width: 760px;
             margin: 0 auto;
@@ -452,8 +452,8 @@
         }
 
         /* ==========================================
-           About Section & Table
-           ========================================== */
+            About Section & Table
+            ========================================== */
         .about-section {
             background-color: var(--color-bg-sub);
             padding: 100px 0;
@@ -501,8 +501,8 @@
         }
 
         /* ==========================================
-           Footer
-           ========================================== */
+            Footer
+            ========================================== */
         footer {
             background-color: var(--color-bg-main);
             color: var(--color-text-main);
@@ -538,8 +538,8 @@
         }
 
         /* ==========================================
-           Responsive Media Queries
-           ========================================== */
+            Responsive Media Queries
+            ========================================== */
         @media (max-width: 1024px) {
             .grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -592,7 +592,7 @@
     <!-- Header -->
     <header>
         <div class="container header-inner">
-            <div class="logo" onclick="navigateToSection(event, 'top')">JEJU <span>KINGDOM</span></div>
+            <div class="logo" onclick="navigateToSection(event, 'top')">MANCHUKUO <span>GOVERNMENT</span></div>
             <nav>
                 <ul>
                     <li><a href="#articles" onclick="navigateToSection(event, 'articles')">NEWS</a></li>
@@ -618,7 +618,7 @@
                 <!-- Card 1 -->
                 <div class="card" onclick="openArticle('article-0.9')">
                     <div class="card-image-box">
-                        <img src="https://i.imgur.com/a08J13l.png" alt="済州王国国旗">
+                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
                     </div>
                     <div class="card-body">
                         <div class="card-tag">Territory</div>
@@ -628,10 +628,9 @@
                 </div>
 
                 <!-- Card 2 -->
-
                 <div class="card" onclick="openArticle('article-1')">
                     <div class="card-image-box">
-                        <img src="https://i.imgur.com/a08J13l.png" alt="済州王国国旗">
+                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
                     </div>
                     <div class="card-body">
                         <div class="card-tag">Territory</div>
@@ -643,7 +642,7 @@
                 <!-- Card 3 -->
                 <div class="card" onclick="openArticle('article-2')">
                     <div class="card-image-box">
-                        <img src="https://i.imgur.com/a08J13l.png" alt="済州王国国旗">
+                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
                     </div>
                     <div class="card-body">
                         <div class="card-tag">Identity</div>
@@ -652,11 +651,10 @@
                     </div>
                 </div>
                 
-                <!-- 💡 4つ目以降のニュースを追加する場合はここから下に同じようにカードを追加していけば自動的に隠れます -->
-
-                                <div class="card" onclick="openArticle('article-3')">
+                <!-- Card 4 -->
+                <div class="card" onclick="openArticle('article-3')">
                     <div class="card-image-box">
-                        <img src="https://i.imgur.com/a08J13l.png" alt="済州王国国旗">
+                        <img src="https://i.imgur.com/a08J13l.png" alt="満州国国旗">
                     </div>
                     <div class="card-body">
                         <div class="card-tag">Founding of the country</div>
@@ -666,7 +664,7 @@
                 </div>
             </div>
             
-            <!-- 「もっと見る」ボタンを追加 -->
+            <!-- 「もっと見る」ボタン -->
             <div class="more-btn-container">
                 <button class="more-news-btn" id="more-btn" onclick="toggleNews()">もっと見る</button>
             </div>
@@ -675,7 +673,7 @@
         <!-- About Section -->
         <section id="about" class="about-section">
             <div class="container">
-                <h2 class="section-title">About Jeju Kingdom</h2>
+                <h2 class="section-title">About Manchukuo</h2>
                 <div class="table-wrapper">
                     <table>
                         <tbody>
@@ -710,7 +708,8 @@
         </section>
     </div>
 
-        <div id="article-0.9" class="article-detail-section container">
+    <!-- 各記事詳細ビュー（省略：内容は維持） -->
+    <div id="article-0.9" class="article-detail-section container">
         <div class="article-container">
             <div class="article-header">
                 <button class="back-btn" onclick="showListView()">← ニュース一覧に戻る</button>
@@ -719,21 +718,18 @@
                 <p class="article-date">発表日: 2026年6月8日</p>
             </div>
             <div class="article-main-img">
-                <img src="https://i.imgur.com/rJd5lf1.png" alt="済州王国国旗">
+                <img src="https://i.imgur.com/rJd5lf1.png" alt="満州国国旗">
             </div>
             <div class="article-content-body">
-                        <h3>わが国はフィリピン北部を完全併合しました。</h3>
-                        <p>2026年6月12日 済州王国はフィリピン北部を完全併合しました！。</br>
-                        つぎは南部も行きたいのですが疲れたのと、維持費が足りなくなると思うので</br>
-                        維持費を稼ぎ次第空いてる南部に行こうと思います。
-                    </p>
+                <h3>わが国はフィリピン北部を完全併合しました。</h3>
+                <p>2026年6月12日 満州国はフィリピン北部を完全併合しました！。</br>
+                つぎは南部も行きたいのですが疲れたのと、維持費が足りなくなると思うので</br>
+                維持費を稼ぎ次第空いてる南部に行こうと思います。
+                </p>
             </div>
         </div>
     </div>
 
-    
-
-    <!-- 記事詳細 1 -->
     <div id="article-1" class="article-detail-section container">
         <div class="article-container">
             <div class="article-header">
@@ -743,17 +739,16 @@
                 <p class="article-date">発表日: 2026年6月8日</p>
             </div>
             <div class="article-main-img">
-                <img src="https://i.imgur.com/rJd5lf1.png" alt="済州王国国旗">
+                <img src="https://i.imgur.com/rJd5lf1.png" alt="満州国国旗">
             </div>
             <div class="article-content-body">
-                <p>2026年6月8日、済州王国政府はアラスカ南部における一部地域の占領および安定的な統治体制の確立が完了したことを公式に発表しました。</p>
-                <p>本計画は長期にわたり慎重に進められてきたものであり、今回の統治完了に伴い、済州王国はフィリピン地域、アラスカ地域の双方に領土・拠点を有する、国際的にも大変ユニークなミクロネーション（架空国家）としての地位をさらに強固なものとしました。</p>
+                <p>2026年6月8日、満州国政府はアラスカ南部における一部地域の占領および安定的な統治体制の確立が完了したことを公式に発表しました。</p>
+                <p>本計画は長期にわたり慎重に進められてきたものであり、今回の統治完了に伴い、満州国はフィリピン地域、アラスカ地域の双方に領土・拠点を有する、国際的にも大変ユニークなミクロネーション（架空国家）としての地位をさらに強固なものとしました。</p>
                 <p>国王は世界中の平和と繁栄を願っています。</p>
             </div>
         </div>
     </div>
 
-    <!-- 記事詳細 2 -->
     <div id="article-2" class="article-detail-section container">
         <div class="article-container">
             <div class="article-header">
@@ -763,16 +758,15 @@
                 <p class="article-date">発表日: 2026年6月8日</p>
             </div>
             <div class="article-main-img">
-                <img src="https://i.imgur.com/HTfxQXp.png" alt="済州王国国旗">
+                <img src="https://i.imgur.com/HTfxQXp.png" alt="満州国国旗">
             </div>
             <div class="article-content-body">
-                <p>済州王国の国家のシンボルである「国旗」が、公式に新たなデザインへと刷新されました。</p>
+                <p>満州国の国家のシンボルである「国旗」が、公式に新たなデザインへと刷新されました。</p>
                 <p>新しい国旗は、現実での済州島の町旗をそのまま国旗に使っています。</p>
             </div>
         </div>
     </div>
 
-    <!-- 記事詳細 3 -->
     <div id="article-3" class="article-detail-section container">
         <div class="article-container">
             <div class="article-header">
@@ -782,30 +776,24 @@
                 <p class="article-date">発表日: 2026年6月8日</p>
             </div>
             <div class="article-main-img">
-                <img src="https://i.imgur.com/HTfxQXp.png" alt="済州王国国旗">
+                <img src="https://i.imgur.com/HTfxQXp.png" alt="満州国国旗">
             </div>
             <div class="article-content-body document-box">
-                <p class="document-title">済州王国 平和主義声明全文</p>
-                
-                <p><strong>第1条 声明の主旨</strong><br>この声明は国民や国家首相が戦争をしたくない
-ということで作りました。
-</p>
-                
-                <p class="document-section-title">第2条 済州王国の禁止事項</p>
+                <p class="document-title">満州国 平和主義声明全文</p>
+                <p><strong>第1条 声明の主旨</strong><br>この声明は国民や国家首相が戦争をしたくないということで作りました。</p>
+                <p class="document-section-title">第2条 満州国の禁止事項</p>
                 <ul class="statement-list-large">
                     <li>世界各国やその人々への誹謗中傷、不名誉な攻撃を行うこと。</li>
                     <li>世界各国で発生するあらゆる戦争・紛争への参加、および武力による加担。</li>
                     <li>国際社会において、いかなる戦争行為もこれを行わないこと。</li>
                     <li>他国との軍事系同盟や、それに類する防衛・攻撃を前提とした協定への参加。</li>
                 </ul>
-
                 <p class="document-section-title">＜世界の国々への明確な禁止事項＞</p>
                 <ul class="statement-list-large">
-                    <li>非武装および平和を愛する「済州王国」を攻め、侵略すること。</li>
-                    <li>済州王国に対する一方的な誹謗中傷、名誉毀損、および暴言。</li>
+                    <li>非武装および平和を愛する「満州国」を攻め、侵略すること。</li>
+                    <li>満州国に対する一方的な誹謗中傷、名誉毀損、および暴言。</li>
                 </ul>
-
-                <p class="document-section-title">第3条 済州王国が許される権利・範囲</p>
+                <p class="document-section-title">第3条 満州国が許される権利・範囲</p>
                 <ul class="statement-list-large">
                     <li>自衛の目的における、必要最低限の兵器・防衛用機材の製造。</li>
                     <li>外部からの侵入を防ぐための壁、および自衛のための堅牢な防衛線の設置。</li>
@@ -813,40 +801,34 @@
                     <li>経済や文化など、軍事系同盟「以外」の平和的な同盟への積極的な参加。</li>
                     <li>万が一、他国より不当に攻められた場合、徹底的な防衛のために軍を率いて自国の安全と国民を守るために戦うこと。</li>
                 </ul>
-
                 <p class="document-section-title">第4条 最後に</p>
                 <p style="font-size: 14px; margin-bottom: 0;">うちの国は戦争をしたくないです。
-でも世界の国とは仲良くしたいと思ってます！
-仲良くしてくれる方ぜひ仲良くしたいです！
-</p>
+                でも世界の国とは仲良くしたいと思ってます！
+                仲良くしてくれる方ぜひ仲良くしたいです！
+                </p>
             </div>
         </div>
     </div>
 
-
     <!-- Footer -->
     <footer>
         <div class="container footer-inner">
-            <div class="footer-logo" onclick="navigateToSection(event, 'top')">JEJU KINGDOM</div>
+            <div class="footer-logo" onclick="navigateToSection(event, 'top')">MANCHUKUO</div>
             <div class="footer-sub">Inspired by Media-Culture & Modern Microstate Lifestyle.</div>
-            <div class="copyright">&copy; Jeju Kingdom. All Rights Reserved.</div>
+            <div class="copyright">&copy; Manchukuo. All Rights Reserved.</div>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // ニュース開閉制御用の関数
         function toggleNews() {
             var grid = document.getElementById('news-grid');
             var btn = document.getElementById('more-btn');
-            
             grid.classList.toggle('is-expanded');
-            
             if (grid.classList.contains('is-expanded')) {
                 btn.innerText = '閉じる';
             } else {
                 btn.innerText = 'もっと見る';
-                // 閉じた時にニュースセクションの先頭へスムーズスクロール
                 document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
             }
         }
@@ -872,7 +854,6 @@
         function navigateToSection(event, targetId) {
             event.preventDefault();
             showListView();
-
             if (targetId === 'top') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
@@ -881,11 +862,7 @@
                     var headerOffset = 80;
                     var elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                     var offsetPosition = elementPosition - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
+                    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
                 }
             }
         }
